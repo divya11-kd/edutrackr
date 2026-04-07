@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+
+<title>Assignment, Marks & Task Tracker</title>
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-user-graduate"></i>
+<span>EduTrackr</span>
+</div>
+
+<div class="nav-buttons">
+<a href="{% url 'login' %}">
+<button class="login-btn">Login</button>
+</a>
+
+<a href="{% url 'register' %}">
+<button class="register-btn">Register</button>
+</a>
+
+</div>
+
+</nav>
+
+
+<section class="hero">
+
+<h1>Welcome to EduTrackr</h1>
+
+<p class="tagline">Assignment, Marks & Task Tracker</p>
+
+<p class="hero-text">
+Manage your academic life effortlessly!!!
+</p>
+
+<a href="{% url 'register' %}" class="get-started-btn">Get Started</a>
+</section>
+
+
+<section class="advantages">
+
+<h2 class="adv-title">Why Choose EduTrackr?</h2>
+
+<div class="adv-box">
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="adv-img">
+
+<h3>Assignment Organizer</h3>
+
+<p>Track deadlines and never miss assignment submissions.</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" class="adv-img">
+
+<h3>Marks Analysis</h3>
+
+<p>Monitor subject marks and improve performance.</p>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="adv-img">
+
+<h3>Time Management</h3>
+
+<p>Plan academic tasks efficiently.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="reviews">
+
+<h2 class="review-title">User Feedback</h2>
+
+<div class="review-box">
+
+<div class="review-card">
+
+<img src="https://randomuser.me/api/portraits/women/65.jpg" class="review-img">
+
+<p>"This tracker organized my entire semester. I never missed assignments again!"</p>
+
+<h4>⭐ ⭐ ⭐ ⭐ </h4>
+<span>Sanju Khatwate – Computer Science</span>
+
+</div>
+
+<div class="review-card">
+
+<img src="https://randomuser.me/api/portraits/men/32.jpg" class="review-img">
+
+<p>"Beautiful design and super easy to use. Perfect tool for students."</p>
+
+<h4>⭐ ⭐ ⭐ ⭐ ⭐</h4>
+<span>Tarun Kinra – MBBS Student</span>
+
+</div>
+
+<div class="review-card">
+
+<img src="https://randomuser.me/api/portraits/women/44.jpg" class="review-img">
+
+<p>"Tracking my marks and tasks became so simple with this tracker."</p>
+
+<h4>⭐ ⭐ ⭐ ⭐ ⭐</h4>
+<span>Kavana Dalbanjan – Diploma Student</span>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 Assignment Tracker</p>
+
+</footer>
+
+</body>
+</html>

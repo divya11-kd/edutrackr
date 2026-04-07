@@ -1,0 +1,19 @@
+<h2>Edit Marks</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="exam" value="{{mark.exam_name}}" required>
+
+<input type="text" name="subject" value="{{mark.subject}}" required>
+
+<input type="number" name="marks" value="{{mark.marks_obtained}}" required>
+
+<input type="number" name="total" value="{{mark.total_marks}}" required>
+
+<input type="date" name="date" value="{{mark.date}}" required>
+
+<button type="submit">Update</button>
+
+</form>

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Python Project",
+    "subject": "Programming",
+    "due_date": "2026-03-15",
+    "email": "student1@gmail.com"
+  },
+  {
+    "name": "CAD Assignment",
+    "subject": "Engineering",
+    "due_date": "2026-03-18",
+    "email": "student2@gmail.com"
+  }
+]

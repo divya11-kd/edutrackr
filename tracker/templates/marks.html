@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Marks Tracker</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(to right,#ffffff,#e6d6ff);
+padding:30px;
+}
+
+/* Page Title */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.home-btn{
+background:#6a5acd;
+color:white;
+padding:8px 15px;
+border-radius:8px;
+text-decoration:none;
+}
+
+/* Top Layout */
+
+.top-section{
+display:flex;
+gap:30px;
+}
+
+/* Cards */
+
+.card{
+flex:1;
+background:white;
+border:3px solid #d6ccff;
+border-radius:14px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+padding:22px;
+}
+
+.card:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+transition:0.3s;
+}
+
+/* Form */
+
+.form-box input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.save-btn{
+background:#6a5acd;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+cursor:pointer;
+font-weight:500;
+transition:all 0.3s ease;
+}
+
+/* Hover Effect */
+
+.save-btn:hover{
+background:#4b2aad;
+transform:translateY(-2px);
+box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+
+.save-btn:active{
+transform:scale(0.96);
+}
+/* Calculator */
+
+.subject-row{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+}
+
+.subject-row input{
+flex:1;
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.add-btn{
+background:#6a5acd;
+color:white;
+border:none;
+padding:5px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.calc-btn{
+background:#4b2aad;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+margin-top:10px;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+
+/* Hover Effect */
+
+.calc-btn:hover{
+background:#37208c;
+transform:translateY(-2px);
+box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+
+/* Click Effect */
+
+.calc-btn:active{
+transform:scale(0.96);
+}
+
+.result{
+margin-top:10px;
+font-weight:600;
+color:#4b2aad;
+}
+
+/* Mini subject counter */
+
+.subject-count{
+float:right;
+font-size:12px;
+background:#f3f1ff;
+padding:4px 8px;
+border-radius:6px;
+color:#4b2aad;
+}
+
+/* Stats */
+
+.stats{
+margin-top:10px;
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+
+.stat-box{
+flex:1;
+background:#f3f1ff;
+border:1px solid #ddd;
+padding:10px;
+border-radius:8px;
+font-size:14px;
+color:#4b2aad;
+font-weight:500;
+}
+
+/* Table */
+
+table{
+width:100%;
+margin-top:40px;
+border:2px solid #e4ddff;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+th{
+background:#6a5acd;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+
+/* Professional recommendation: hover */
+
+tr:hover{
+background:#f3f1ff;
+transition:0.2s;
+}
+
+tr:hover{
+background:#f3f1ff;
+transition:0.2s;
+}
+
+/* Performance Colors */
+
+.excellent{
+color:#22c55e;
+font-weight:700;
+}
+
+.verygood{
+color:#6a5acd;
+font-weight:700;
+}
+
+.good{
+color:#f59e0b;
+font-weight:700;
+}
+
+.poor{
+color:#ef4444;
+font-weight:700;
+}
+/* Action buttons */
+
+.action-btn{
+background:none;
+border:none;
+font-size:20px;
+cursor:pointer;
+margin:0 6px;
+text-decoration:none;
+transition:all 0.2s ease;
+display:inline-block;
+}
+
+/* edit hover */
+.action-btn:hover{
+transform:scale(1.2);
+}
+
+/* delete hover */
+.delete-btn:hover{
+transform:scale(1.4);
+}
+
+/* Empty table */
+
+.empty-msg{
+text-align:center;
+padding:20px;
+color:#888;
+}
+
+.top-bar{
+display:flex;
+justify-content:flex-end;
+margin-bottom:20px;
+}
+
+
+.remove-btn{
+background:none;
+border:none;
+font-size:16px;   /* bigger ❌ */
+cursor:pointer;
+transition:0.2s;
+}
+
+.remove-btn:hover{
+transform:scale(1.2);
+color:red;
+}
+
+.clear-btn{
+background:#4b2aad;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+margin-left:5px;
+transition:all 0.3s ease;
+}
+
+.clear-btn:hover{
+background:#37208c;
+transform:translateY(-2px);
+box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+
+#examName{
+width:100%;
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-bottom:10px;
+}
+
+.add-btn:hover{
+background:#4b2aad;
+transform:scale(1.1);
+}
+
+/* NAVBAR */
+
+.dashboard-navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:white;
+padding:12px 25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+margin-bottom:25px;
+}
+
+/* Logo */
+
+.logo{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:20px;
+font-weight:600;
+color:#4b2aad;
+cursor:pointer;
+transition:0.3s;
+}
+
+.logo i{
+font-size:22px;
+color:#6a5acd;
+}
+
+.logo:hover{
+transform:translateY(-2px);
+color:#6a5acd;
+text-shadow:0 2px 8px rgba(106,90,205,0.3);
+}
+
+/* Right side */
+
+.nav-right{
+display:flex;
+gap:12px;
+}
+
+/* Dashboard button */
+
+.dashboard-btn{
+background:#6a5acd;
+color:white;
+text-decoration:none;
+padding:6px 12px;
+border-radius:16px;
+font-size:13px;
+font-weight:500;
+display:flex;
+align-items:center;
+gap:5px;
+transition:0.3s;
+}
+
+/* Hover */
+
+.dashboard-btn:hover{
+background:#3b82f6;
+transform:translateY(-2px);
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.table-edit-input{
+width:70px;
+padding:4px;
+border:1px solid #d6ccff;
+border-radius:6px;
+text-align:center;
+font-size:13px;
+outline:none;
+}
+
+.table-edit-input:focus{
+border-color:#6a5acd;
+box-shadow:0 0 4px rgba(106,90,205,0.4);
+}
+
+a.delete-btn:hover{
+color:red !important;
+transform:scale(1.3);
+}
+
+.grade{
+padding:4px 10px;
+border-radius:12px;
+font-size:12px;
+font-weight:600;
+color:white;
+}
+
+.grade-a{
+background:#22c55e;
+}
+
+.grade-b{
+background:#3b82f6;
+}
+
+.grade-c{
+background:#f59e0b;
+}
+
+.grade-d{
+background:#ef4444;
+}
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="dashboard-navbar">
+
+<div class="nav-left">
+
+<div class="logo">
+<i class="fa-solid fa-user-graduate"></i>
+<span>EduTrackr</span>
+</div>
+
+</div>
+
+<div class="nav-right">
+
+<a href="{% url 'dashboard' %}" class="dashboard-btn">
+<i class="fa-solid fa-house"></i> Dashboard
+</a>
+
+</div>
+
+</nav>
+
+<div class="header">
+<h2>📊 Marks Tracker</h2>
+</div>
+
+<div class="top-section">
+
+<!-- Add Marks -->
+
+<div class="card form-box">
+
+<h3>➕ Add Marks</h3>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="exam" placeholder="Exam Name" required>
+
+<input type="text" name="subject" placeholder="Subject" required>
+
+<input type="number" name="marks" placeholder="Marks Obtained" required>
+
+<input type="number" name="total" placeholder="Total Marks" required>
+
+<input type="date" name="date" required>
+
+<button class="save-btn">💾 Save</button>
+
+</form>
+
+</div>
+
+<!-- Calculator -->
+
+<div class="card">
+
+<h3>
+📊 Percentage Calculator
+<span class="subject-count">Subjects: <span id="subjectCount">0</span></span>
+</h3>
+
+<input type="text" id="examName" placeholder="Exam Name">
+
+<div id="subjects">
+
+<div class="subject-row">
+
+<input type="text" placeholder="Subject">
+
+<input type="number" placeholder="Marks">
+
+<input type="number" placeholder="Total">
+
+<button type="button" onclick="removeRow(this)" class="remove-btn">❌</button>
+</div>
+
+</div>
+
+<button class="add-btn" onclick="addSubject()">+</button>
+
+<br><br>
+
+<button class="calc-btn" onclick="calculate()">Calculate</button>
+<button class="clear-btn" onclick="clearCalc()">Clear</button>
+
+<div class="result" id="result"></div>
+
+<div class="stats">
+
+<div class="stat-box">
+🏆 Highest Score: <span id="best"></span>
+</div>
+
+<div class="stat-box">
+📉 Lowest Score: <span id="worst"></span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Table -->
+
+<table>
+
+<p style="margin-top:20px;color:#4b2aad;font-weight:500;">
+📚 Total Subjects: {{data|length}}
+</p>
+
+<tr>
+<th>Exam</th>
+<th>Subject</th>
+<th>Marks</th>
+<th>Total</th>
+<th>Date</th>
+<th>Grade</th>
+<th>Performance</th>
+<th>Actions</th>
+</tr>
+
+{% if data %}
+
+{% for m in data %}
+
+<tr class="data-row">
+
+<td>{{m.exam_name}}</td>
+<td>{{m.subject}}</td>
+<td>{{m.marks_obtained}}</td>
+<td>{{m.total_marks}}</td>
+<td>{{m.date}}</td>
+
+<td>
+
+{% if m.percentage >= 90 %}
+<span class="grade grade-a">A</span>
+
+{% elif m.percentage >= 75 %}
+<span class="grade grade-b">B</span>
+
+{% elif m.percentage >= 60 %}
+<span class="grade grade-c">C</span>
+
+{% else %}
+<span class="grade grade-d">D</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if m.percentage >= 90 %}
+<span class="excellent">Excellent</span>
+
+{% elif m.percentage >= 75 %}
+<span class="verygood">Very Good</span>
+
+{% elif m.percentage >= 50 %}
+<span class="good">Good</span>
+
+{% else %}
+<span class="poor">Needs Improvement</span>
+
+{% endif %}
+
+</td>
+<td>
+
+<button onclick="editRow(this)" class="action-btn">✏️</button>
+
+<a href="{% url 'delete_mark' m.id %}" 
+class="action-btn delete-btn"
+onclick="return confirm('Delete this record?')">❌</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+<td colspan="8" class="empty-msg">
+No records yet. Add your first subject above.
+</td>
+</tr>
+
+{% endif %}
+
+</table>
+
+<script>
+
+/* Add subject */
+
+function addSubject(){
+
+let div=document.createElement("div")
+
+div.className="subject-row"
+
+div.innerHTML=`
+
+<input type="text" placeholder="Subject">
+
+<input type="number" placeholder="Marks">
+
+<input type="number" placeholder="Total">
+
+<button onclick="removeRow(this)" class="remove-btn">❌</button>
+
+`
+
+document.getElementById("subjects").appendChild(div)
+
+}
+/* Calculate */
+
+function calculate(){
+
+let subjects=document.querySelectorAll(".subject-row input:nth-child(1)")
+let marks=document.querySelectorAll(".subject-row input:nth-child(2)")
+let totals=document.querySelectorAll(".subject-row input:nth-child(3)")
+
+let totalMarks=0
+let obtained=0
+
+let highest=0
+let lowest=100
+
+let highestSub=""
+let lowestSub=""
+
+for(let i=0;i<marks.length;i++){
+
+let subject=subjects[i].value
+let m=Number(marks[i].value)
+let t=Number(totals[i].value)
+
+if(!m || !t || !subject) continue
+
+let percent=(m/t)*100
+
+obtained+=m
+totalMarks+=t
+
+if(percent>highest){
+highest=percent
+highestSub=subject
+}
+
+if(percent<lowest){
+lowest=percent
+lowestSub=subject
+}
+
+}
+
+if(totalMarks===0){
+alert("Please enter marks first")
+return
+}
+
+let overall=(obtained/totalMarks)*100
+
+document.getElementById("result").innerText=
+"Overall Percentage: "+overall.toFixed(2)+"%"
+
+document.getElementById("best").innerText=
+highestSub+" ("+highest.toFixed(2)+"%)"
+
+document.getElementById("worst").innerText=
+lowestSub+" ("+lowest.toFixed(2)+"%)"
+
+document.getElementById("subjectCount").innerText=subjects.length
+
+}
+
+function removeRow(btn){
+btn.parentElement.remove()
+updateSubjectCount()
+}
+
+function clearCalc(){
+
+document.getElementById("subjects").innerHTML=`
+<div class="subject-row">
+<input type="text" placeholder="Subject">
+<input type="number" placeholder="Marks">
+<input type="number" placeholder="Total">
+<button onclick="removeRow(this)" class="remove-btn">❌</button>
+</div>
+`
+
+document.getElementById("result").innerText=""
+document.getElementById("best").innerText=""
+document.getElementById("worst").innerText=""
+document.getElementById("subjectCount").innerText="0"
+
+}
+
+function editRow(btn){
+
+let row = btn.parentElement.parentElement
+let cells = row.querySelectorAll("td")
+
+let subject = cells[1].innerText
+let marks = cells[2].innerText
+let total = cells[3].innerText
+
+cells[1].innerHTML = `<input class="table-edit-input" value="${subject}">`
+cells[2].innerHTML = `<input class="table-edit-input" type="number" value="${marks}">`
+cells[3].innerHTML = `<input class="table-edit-input" type="number" value="${total}">`
+
+btn.innerText="💾"
+btn.onclick=function(){saveRow(this)}
+
+}
+
+function saveRow(btn){
+
+let row = btn.parentElement.parentElement
+let inputs = row.querySelectorAll("input")
+
+let subject = inputs[0].value
+let marks = inputs[1].value
+let total = inputs[2].value
+
+let cells = row.querySelectorAll("td")
+
+cells[1].innerText = subject
+cells[2].innerText = marks
+cells[3].innerText = total
+
+btn.innerText="✏️"
+btn.onclick=function(){editRow(this)}
+
+}
+
+</script>
+
+</body>
+</html>

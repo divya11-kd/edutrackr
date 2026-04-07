@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Register</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:Poppins;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:15px;
+width:350px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+h2{
+margin-bottom:5px;
+}
+
+p{
+color:gray;
+font-size:14px;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+background:#2575fc;
+color:white;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a5de0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Join EduTrackr</h2>
+<p>Register to access your personal academic tracker..</p>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="username" placeholder="Username" required>
+<input type="text" name="mobile" placeholder="Mobile Number" required>
+<input type="email" name="email" placeholder="Email Address" required>
+<input type="password" name="password" placeholder="Password" required>
+<input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+<button type="submit">Register</button>
+<p style="margin-top:15px; text-align:center;">
+    Do you already have an account?
+    <a href="{% url 'login' %}" style="color:#007bff; font-weight:600;">Login</a>
+</p>
+
+</form>
+
+</div>
+
+</body>
+</html>
