@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-2$k=op=#(fxwat1x3)_4x+y3cyn8&kexse9x&g@1k_y-g_suc+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['edutrackr-mgni.onrender.com']
 
 # Application definition
 
@@ -135,11 +134,19 @@ EMAIL_HOST_PASSWORD = 'qvhg tpxt cngn faah'
 
 import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
-}
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Default DATABASES setup
+DATABASES = {}
+
+if os.environ.get('RENDER') == 'true':
+    # When deployed on Render, use Render internal database
+    DATABASES['default'] = dj_database_url.parse(os.environ['DATABASE_URL'])
+else:
+    # Local development – use external database URL
+    DATABASES['default'] = dj_database_url.parse(
+        'postgresql://studenttracker:caydf6hPHouiSdytQ0PoHKfaPIiKLGob@dpg-d7auqbp5pdvs73drl610-a.ohio-postgres.render.com/studenttracker_6tzw'
+    )
+    
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
