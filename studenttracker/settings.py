@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2$k=op=#(fxwat1x3)_4x+y3cyn8&kexse9x&g@1k_y-g_suc+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -115,7 +115,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 import os
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -132,3 +131,11 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = 'divyadalbanjan4@gmail.com'
 EMAIL_HOST_PASSWORD = 'qvhg tpxt cngn faah'
+
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+}
